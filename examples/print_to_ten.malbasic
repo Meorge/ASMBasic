@@ -1,6 +1,6 @@
 /// prints to ten then stops
-SET v0 0
-MRK g0
-ADD v0 1
-PRT v0 1
-LES v0 10 g0
+SET v00 00
+MRK g00
+ADD v00 01
+PRT v00 01
+LES v00 0A g00

@@ -14,7 +14,7 @@ public class MALBASICInterpreter
     static private string[] argsIn;
 
     //public static MALBASICInterpreter interpreter;
-    static private Dictionary<int, int> variables = new Dictionary<int, int>();
+    static private Dictionary<int, string> variables = new Dictionary<int, string>();
     static private Dictionary<int, int> gotos = new Dictionary<int, int>();
 
     static private int currentLine = -1;
@@ -48,8 +48,14 @@ public class MALBASICInterpreter
 
         //System.Console.WriteLine(lines);
 
-        NextLine();
+        EvaluateCode();
 
+    }
+
+    static public void EvaluateCode() {
+        for (currentLine = 0; currentLine < lines.Length; currentLine++) {
+            EvaluateLine(lines[currentLine]);
+        }
     }
 
     static public void EvaluateLine(string line) {
@@ -57,7 +63,7 @@ public class MALBASICInterpreter
         string instructionName = partsOfLine[0];
 
 
-        System.Console.WriteLine("about to check the instruction on this line: " + line);
+        //System.Console.WriteLine("about to check the instruction on this line: " + line);
 
         switch (instructionName) {
             case "SET":
@@ -97,34 +103,36 @@ public class MALBASICInterpreter
             case "///":
                 break;
         }
-
-        NextLine();
+        return;
     }
 
-    static void NextLine() {
-        currentLine++;
+    // static void NextLine() {
+    //     currentLine++;
 
-        // System.Console.WriteLine(variables);
-        // System.Console.WriteLine(gotos);
-        //System.Console.WriteLine("Current line is " + lines[currentLine].ToString());
+    //     // System.Console.WriteLine(variables);
+    //     // System.Console.WriteLine(gotos);
+    //     //System.Console.WriteLine("Current line is " + lines[currentLine].ToString());
 
-        //System.Console.WriteLine("Current line is " + currentLine.ToString() + ", there are " + (lines.Length - 1).ToString() + " total");
-        if (currentLine > lines.Length - 1) {
-            //System.Console.WriteLine("All done!");
-            return;
-        }
+    //     //System.Console.WriteLine("Current line is " + currentLine.ToString() + ", there are " + (lines.Length - 1).ToString() + " total");
+    //     if (currentLine > lines.Length - 1) {
+    //         //System.Console.WriteLine("All done!");
+    //         return;
+    //     }
 
-        //System.Console.WriteLine("Is this where the fuckening is happening?");
-        EvaluateLine(lines[currentLine]);
-    }
+    //     //System.Console.WriteLine("Is this where the fuckening is happening?");
+    //     //EvaluateLine(lines[currentLine]);
+    // }
 
     static void FuncSET(string[] parts) {
         string destination = parts[1];
-        string value = parts[2];
+        string value = "";
+        for (int g = 1; g < parts.Length; g++) {
+            value += ParseNumber(parts[g]);
+        }
 
         int destID = ParseVariableName(destination);
 
-        int realValue = ParseNumber(value);
+        string realValue = ParseNumber(value);
 
         if (variables.ContainsKey(destID)) {
             variables[destID] = realValue;
@@ -143,10 +151,10 @@ public class MALBASICInterpreter
 
         int destID = ParseVariableName(destination);
 
-        int realValue = ParseNumber(value);
+        int realValue = Convert.ToInt32(ParseNumber(value), 16);
 
         if (variables.ContainsKey(destID)) {
-            variables[destID] += realValue;
+            variables[destID] = (Convert.ToInt32(variables[destID], 16) + realValue).ToString("X");
             return;
         } else {
             System.Console.WriteLine("ID " + destID.ToString() + " does not exist!");
@@ -164,9 +172,12 @@ public class MALBASICInterpreter
 
         int destID = ParseVariableName(destination);
 
-        int realValue = ParseNumber(value);
+        int realValue = Convert.ToInt32(ParseNumber(value), 16);
 
-        variables[destID] -= realValue;
+        if (variables.ContainsKey(destID)) {
+            variables[destID] = (Convert.ToInt32(variables[destID], 16) - realValue).ToString("X");
+        }
+        
         return;
     }
 
@@ -204,7 +215,7 @@ public class MALBASICInterpreter
 
         int newline = 0;
         if (parts.Length-1 >= 2) {
-            newline = ParseNumber(parts[2]);
+            newline = Convert.ToInt32(ParseNumber(parts[2]), 16);
         }
         
 
@@ -217,17 +228,27 @@ public class MALBASICInterpreter
     }
 
     static void FuncPRS(string[] parts) {
-        string destination = parts[1];
-
-        int newline = 0;
-        if (parts.Length-1 >= 2) {
-            newline = ParseNumber(parts[2]);
+        string destination = "";
+        for (int g = 1; g < parts.Length; g++) {
+            destination += ParseNumber(parts[g]);
         }
 
-        if (newline == 0) {
-            System.Console.WriteLine(IntToString(ParseNumber(destination)));
-        } else {
-            System.Console.Write(IntToString(ParseNumber(destination)));
+        System.Console.WriteLine("VALUE: " + destination);
+        destination = ParseNumber(destination);
+
+        // construct array of values
+        string currentHexBit = "";
+        List<string> hexBits = new List<string>();
+        for (int g = 0; g < destination.Length; g++) {
+            currentHexBit += destination[g];
+            if (currentHexBit.Length == 2) {
+                hexBits.Add(currentHexBit);
+                currentHexBit = "";
+            }
+        }
+
+        foreach (string hexBit in hexBits) {
+            System.Console.Write((char)Convert.ToInt32(hexBit, 16));
         }
         return;
     }
@@ -240,9 +261,9 @@ public class MALBASICInterpreter
 
         //System.Console.WriteLine("LES Func - compare " + dest1 + " to " + dest2 + " and goto " + gotoStr);
 
-        int dest1_Val = ParseNumber(dest1);
+        int dest1_Val = Convert.ToInt32(ParseNumber(dest1), 16);
 
-        int dest2_Val = ParseNumber(dest2);
+        int dest2_Val = Convert.ToInt32(ParseNumber(dest2), 16);
 
         int gotoID = int.Parse(gotoStr.Substring(1,gotoStr.Length-1));
 
@@ -263,8 +284,8 @@ public class MALBASICInterpreter
         string dest2 = parts[2];
         string gotoStr = parts[3];
 
-        int dest1_Val = ParseNumber(dest1);
-        int dest2_Val = ParseNumber(dest2);
+        int dest1_Val = Convert.ToInt32(ParseNumber(dest1), 16);
+        int dest2_Val = Convert.ToInt32(ParseNumber(dest2), 16);
 
         int gotoID = int.Parse(gotoStr.Substring(1,gotoStr.Length-1));
 
@@ -284,8 +305,8 @@ public class MALBASICInterpreter
         string dest2 = parts[2];
         string gotoStr = parts[3];
 
-        int dest1_Val = ParseNumber(dest1);
-        int dest2_Val = ParseNumber(dest2);
+        int dest1_Val = Convert.ToInt32(ParseNumber(dest1), 16);
+        int dest2_Val = Convert.ToInt32(ParseNumber(dest2), 16);
 
         int gotoID = int.Parse(gotoStr.Substring(1,gotoStr.Length-1));
 
@@ -305,8 +326,8 @@ public class MALBASICInterpreter
         string dest2 = parts[2];
         string gotoStr = parts[3];
 
-        int dest1_Val = ParseNumber(dest1);
-        int dest2_Val = ParseNumber(dest2);
+        int dest1_Val = Convert.ToInt32(ParseNumber(dest1), 16);
+        int dest2_Val = Convert.ToInt32(ParseNumber(dest2), 16);
 
         int gotoID = int.Parse(gotoStr.Substring(1,gotoStr.Length-1));
 
@@ -322,24 +343,43 @@ public class MALBASICInterpreter
         }
     }
 
+    static private bool IsValidHex(string val) {
+        // from https://stackoverflow.com/a/223857
+        return System.Text.RegularExpressions.Regex.IsMatch(val, @"\A\b[0-9a-fA-F]+\b\Z");
+    }
 
 
-    static private int ParseNumber(string val) {
-        int outVal = 0;
+
+    static private string ParseNumber(string val) {
+        string outVal = "";
         if (val[0] == 'v') {
             // this is good, we have a destination 1
-            if (variables.TryGetValue(int.Parse(val.Substring(1,val.Length-1)), out int z)) {
-                outVal = z;
+            string possibleHex = val.Substring(1,val.Length-1);
+            if (IsValidHex(possibleHex)) {
+                int hexVal = Convert.ToInt32(possibleHex, 16);
+                if (variables.TryGetValue(hexVal, out string z)) {
+                    outVal = z;
+                }
             }
+            // if (variables.TryGetValue(int.Parse(), out int z)) {
+            //     outVal = z;
+            // }
         } else if (val[0] == 'i') {
-            int argVal = int.Parse(val.Substring(1, val.Length-1));
-            if (argsIn.Length - 1 >= argVal) {
-                return int.Parse(argsIn[argVal]);
+            string possibleHex = val.Substring(1,val.Length-1);
+            if (IsValidHex(possibleHex)) {
+                int argVal = Convert.ToInt32(possibleHex, 16);
+                if (argsIn.Length - 1 >= argVal) {
+                    return int.Parse(argsIn[argVal]).ToString("X");
+                }
             }
-        } 
+
+        } else if (val[0] == '&') {
+            // it's a string
+
+        }
         
-        else if (int.TryParse(val, out int v)) { // its just a number
-            outVal = int.Parse(val);
+        else if (IsValidHex(val)) { // its just a number
+            outVal = val;
         }
 
         return outVal;
@@ -349,9 +389,16 @@ public class MALBASICInterpreter
         int outVal = 0;
         if (val[0] == 'v') {
             // this is good, we have a destination 1
-            outVal = int.Parse(val.Substring(1,val.Length -1));
+            string possibleHex = val.Substring(1,val.Length -1);
+            if (IsValidHex(possibleHex)) {
+                outVal = Convert.ToInt32(possibleHex, 16);
+            }
+            
         } else if (int.TryParse(val, out int v)) { // its just a number
-            outVal = int.Parse(val);
+            string possibleHex = val;
+            if (IsValidHex(possibleHex)) {
+                outVal = Convert.ToInt32(possibleHex, 16);
+            }
         }
 
         return outVal;
@@ -370,10 +417,6 @@ public class MALBASICInterpreter
         Environment.Exit(2);
     }
 
-    static private string IntToString(int val) {
-        Char c = (Char)((val - 1));
-        return c.ToString();
-    }
 }
 
 
