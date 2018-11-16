@@ -1,0 +1,6 @@
+/// prints to ten then stops
+SET v0 0
+MRK g0
+ADD v0 1
+PRT v0 1
+LES v0 10 g0

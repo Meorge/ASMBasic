@@ -1,0 +1,20 @@
+SET v0 i1 // dividend
+SET v1 0 // divisor
+SET v2 0 // result
+SET v3 i1 // current dividend
+
+/// math should be v0 / v1
+/// v0 - v1 - v1 - v1 (count number of times you subtract v1 before you hit zero)
+
+MRK g1
+///SET v3 v0
+///PRT v1 0
+ADD v1 1
+MRK g0
+
+SUB v3 v1
+ADD v2 1
+
+MOR v3 0 g0
+LES v1 v2 g1
+PRT v2 0

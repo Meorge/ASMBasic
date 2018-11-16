@@ -1,0 +1,12 @@
+SET v1 i1 // num
+SET v2 i2 // mult by
+
+SET v3 0 // iterations so far (out of mult by)
+
+SET v4 0 // result
+
+MRK g0
+ADD v4 v1
+ADD v3 1
+LES v3 v2 g0
+PRT v4

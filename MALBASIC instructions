@@ -1,0 +1,16 @@
+MALBASIC instructions
+
+SET [dest] [source]
+ADD [dest] [source]
+SUB [dest] [source]
+
+MRK [goto]
+MOV [goto]
+
+EQU [source1] [source2] [goto]
+NEQ [source1] [source2] [goto]
+MOR [source1] [source2] [goto]
+LES [source1] [source2] [goto]
+
+PRT [source]
+PSR [source]
