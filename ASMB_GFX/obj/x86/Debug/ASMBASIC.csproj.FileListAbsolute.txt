@@ -1,0 +1,6 @@
+/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/obj/x86/Debug/ASMBASIC.csproj.CoreCompileInputs.cache
+/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/obj/x86/Debug/ASMB_GFX.exe
+/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/obj/x86/Debug/ASMB_GFX.pdb
+/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/bin/Debug/ASMB_GFX.exe
+/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/bin/Debug/ASMB_GFX.pdb
+/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/obj/x86/Debug/ASMBASIC.csprojAssemblyReference.cache

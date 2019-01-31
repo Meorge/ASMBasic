@@ -1,0 +1,24 @@
+﻿<Properties StartupConfiguration="{642DA7B2-2616-4842-8417-6C5CD72C09A8}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ASMB_GFX/bin/Debug/movingsq.asmb">
+    <Files>
+      <File FileName="ASMB_GFX/MainWindow.cs" Line="291" Column="1" />
+      <File FileName="ASMB_GFX/MALBASIC.cs" Line="420" Column="76" />
+      <File FileName="ASMB_GFX/bin/Debug/movingsq.asmb" Line="45" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/MainWindow.cs" relfile="ASMB_GFX/MainWindow.cs" line="187" column="1" />
+      <Breakpoint file="/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/MainWindow.cs" relfile="ASMB_GFX/MainWindow.cs" line="191" column="1" />
+      <Breakpoint file="/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/MALBASIC.cs" relfile="ASMB_GFX/MALBASIC.cs" line="112" column="1" />
+      <Breakpoint file="/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/MALBASIC.cs" relfile="ASMB_GFX/MALBASIC.cs" line="319" column="1" />
+      <Breakpoint file="/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/MALBASIC.cs" relfile="ASMB_GFX/MALBASIC.cs" line="321" column="1" />
+      <Breakpoint file="/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/MALBASIC.cs" relfile="ASMB_GFX/MALBASIC.cs" line="325" column="1" />
+      <Breakpoint file="/Users/malcolmanderson/Google Drive/School/ECS Club/Projects/Assembly-Like Language/ASMB_GFX/MALBASIC.cs" relfile="ASMB_GFX/MALBASIC.cs" line="331" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.ASMBASIC PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

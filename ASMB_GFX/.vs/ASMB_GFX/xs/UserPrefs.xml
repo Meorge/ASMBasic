@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{642DA7B2-2616-4842-8417-6C5CD72C09A8}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ASMB_GFX/Program.cs">
+    <Files>
+      <File FileName="ASMB_GFX/Program.cs" Line="9" Column="10" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ASMB__GFX PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

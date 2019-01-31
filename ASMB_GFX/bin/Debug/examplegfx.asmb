@@ -1,0 +1,99 @@
+﻿///SET v00 00
+///SET v01 00
+///SET v02 FF
+
+///SET v03 03
+///SET v04 08
+
+
+///MRK g00
+///GFX v00 v01 v03
+///ADD v00 01
+///MOR v00 v02 g01
+
+///MOV g00
+
+///MRK g01
+///SET v00 00
+///ADD v01 01
+///MOV g00
+
+
+///MRK g05
+
+///GFX 00 00 05
+
+
+/// Letter "H"
+/// First vertical
+
+GFX 80 80 01
+GFX 80 81 01
+GFX 80 82 01
+GFX 80 83 01
+GFX 80 84 01
+GFX 80 85 01
+GFX 80 86 01
+GFX 80 87 01
+GFX 80 88 01
+
+
+/// Horizontal
+GFX 81 84 01
+GFX 81 85 01
+GFX 82 84 01
+GFX 82 85 01
+GFX 83 84 01
+GFX 83 85 01
+
+
+/// Second vertical
+GFX 84 80 01
+GFX 84 81 01
+GFX 84 82 01
+GFX 84 83 01
+GFX 84 84 01
+GFX 84 85 01
+GFX 84 86 01
+GFX 84 87 01
+GFX 84 88 01
+
+/// Letter "i"
+
+///GFX 87 80 01
+///GFX 87 81 01
+///GFX 87 82 01
+GFX 87 83 01
+GFX 87 84 01
+///GFX 87 85 01
+GFX 87 86 01
+GFX 87 87 01
+GFX 87 88 01
+
+/// Exclamation mark
+
+///GFX 8A 80 01
+GFX 8A 81 01
+GFX 8A 82 01
+GFX 8A 83 01
+GFX 8A 84 01
+///GFX 8A 85 01
+///GFX 8A 86 01
+GFX 8A 87 01
+GFX 8A 88 01
+
+
+/// Smiley eyes
+GFX 80 90 01
+GFX 86 90 01
+GFX 80 91 01
+GFX 86 91 01
+
+/// Smiley mouth
+GFX 80 95 01
+GFX 81 96 01
+GFX 82 96 01
+GFX 83 96 01
+GFX 84 96 01
+GFX 85 96 01
+GFX 86 95 01

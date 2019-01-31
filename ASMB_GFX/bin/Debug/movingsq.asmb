@@ -1,0 +1,124 @@
+MRK g00
+SET v00 10
+SET v01 10
+
+/// X pos of goal
+SET v02 00
+
+/// Y pos of goal
+SET v03 00
+
+RND 00 20 v02
+RND 00 20 v03
+
+GFX CLE 00 00
+
+
+MOV g01
+
+END
+
+
+
+MRK gFF /// main loop
+
+NEQ i00 00 g02
+NEQ i01 00 g03
+NEQ i02 00 g01
+NEQ i03 00 g04
+
+MOV g10
+
+END
+
+
+MRK g01 /// code to move down
+
+///NEQ i00 10 g10 // if we were previously moving up, we can't turn instantly; do nothing.
+
+ADD v01 01
+
+MOV g11
+
+
+MRK g02 /// code to move up
+
+///NEQ i02 10 g10 // if we were previously moving down, can't turn instantly; do nothing
+
+SUB v01 01
+
+MOV g11
+
+
+MRK g03 /// code to move left
+
+///NEQ i03 10 g10 // if we were previously moving right, can't turn instantly; do nothing
+
+SUB v00 01
+
+MOV g11
+
+
+MRK g04 /// code to move right
+
+///NEQ i01 00 g10 // if we were previously moving left, can't turn instantly; do nothing
+
+ADD v00 01
+
+MOV g11
+
+
+MRK g11 /// make sure we arent overflowing
+
+MOR v00 20 g12
+LES v00 00 g13
+
+MOR v01 20 g14
+LES v01 00 g15
+
+MOV g10
+
+
+
+MRK g12 /// reset the x position if it is over
+SET v00 00
+MOV g10
+
+
+MRK g13 /// reset the x position if it is under
+SET v00 20
+MOV g10
+
+
+MRK g14 /// reset the y position if it is over
+SET v01 00
+MOV g10
+
+
+MRK g15 /// reset the y position if it is under
+SET v01 20
+MOV g10
+
+
+
+MRK g10 /// draw the result
+
+///GFX CLE 00 00
+GFX v00 v01 01
+
+EQU v00 v02 g17 // check if X's are the same for the goal
+
+GFX v02 v03 07
+
+END
+
+MRK g17
+EQU v01 v03 g16 // check if Y's are the same for the goal
+GFX v02 v03 07
+END
+
+MRK g16 /// if we got the goal
+RND 00 20 v02
+RND 00 20 v03
+GFX v02 v03 07
+END
